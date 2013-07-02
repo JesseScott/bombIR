@@ -41,11 +41,10 @@ public class DetectFace extends Thread {
   public void run() {
     while (running) {
       if (_cap.available() == true) {
-        _img = _cap.get_image();
-        opencv.copy(_img);
+        //_img = _cap.get_image();
+        opencv.copy(_cap.get_image());
         //faceRect = opencv.detect(true);
       }
-      println("detect");
       try {
         sleep((long)(wait));
       }
@@ -56,11 +55,12 @@ public class DetectFace extends Thread {
   }
 
   public void display() {
-    if (_cap.available() == true) {
-      faceRect = opencv.detect(true);
-      println("Number of faces =" + faceRect.length + "."); 
-      opencv.drawRectDetect(true);
-    }
+    //if (_cap.available() == true) {
+      image(_cap.get_image(), 0, 0);
+      //faceRect = opencv.detect(true);
+      //println("Number of faces =" + faceRect.length + "."); 
+      //opencv.drawRectDetect(true);
+    //}
   }
 
   public void quit() {
